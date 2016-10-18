@@ -1,5 +1,32 @@
 extends layout
-
 block content
-  h1= title
-  p Welcome to #{title}
+    canvas(id = 'fullscreen-canvas' class= 'animated fadeIn')
+    <video height="300" id="localVideo"></video>
+    <div id="remotesVideos"></div>
+
+    script.
+
+        var webrtc = new SimpleWebRTC({
+            localVideoEl: 'localVideo',
+            remoteVideosEl: 'remotesVideos',
+            autoRequestMedia: true,
+            url: 'http://localhost:8888'
+        })
+        webrtc.on('readyToCall', function () {
+            // you can name it anything
+            webrtc.joinRoom('myroom');
+        });
+
+        var granimInstance = new Granim({
+            element: '#fullscreen-canvas',
+            name: 'granim',
+            opacity: [1, 1],
+            states: {
+                "default-state": {
+                    gradients: [
+                        ['#834D9B', '#D04ED6'],
+                        ['#1CD8D2', '#93EDC7']
+                    ]
+                }
+            }
+        });

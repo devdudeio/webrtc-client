@@ -1,6 +1,24 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  canvas(id='fullscreen-canvas' class='animated fadeIn')
+  h1(class='animated fadeInUp')= message
+  h2(class='animated fadeInUp')= error.status
+  pre(class='animated slideInDown') #{error.stack}
+
+
+
+  script.
+    var granimInstance = new Granim({
+      element: '#fullscreen-canvas',
+      name: 'granim',
+      opacity: [1, 1],
+      states: {
+        "default-state": {
+          gradients: [
+            ['#834D9B', '#D04ED6'],
+            ['#1CD8D2', '#93EDC7']
+          ]
+        }
+      }
+    });
