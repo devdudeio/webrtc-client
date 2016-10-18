@@ -6,8 +6,12 @@
 
 var app = require('../app');
 var debug = require('debug')('webrtc-project:server');
-var http = require('http');
+var fs = require('fs');
+var https = require('https');
+var privateKey  = fs.readFileSync('config/sslcerts/key.pem', 'utf8');
+var certificate = fs.readFileSync('config/sslcerts/cert.pem', 'utf8');
 
+var credentials = {key: privateKey, cert: certificate};
 /**
  * Get port from environment and store in Express.
  */
@@ -19,7 +23,7 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+var server = https.createServer(credentials, app);
 
 /**
  * Listen on provided port, on all network interfaces.
