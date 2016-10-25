@@ -8,8 +8,8 @@ var app = require('../app');
 var debug = require('debug')('webrtc-project:server');
 var fs = require('fs');
 var https = require('https');
-var privateKey  = fs.readFileSync('/srv/checkout/config/sslcerts/key.pem', 'utf8');
-var certificate = fs.readFileSync('/srv/checkout/config/sslcerts/cert.pem', 'utf8');
+var privateKey  = fs.readFileSync('/srv/webrtc-client/config/sslcerts/key.pem', 'utf8');
+var certificate = fs.readFileSync('/srv/webrtc-client/config/sslcerts/cert.pem', 'utf8');
 
 var credentials = {key: privateKey, cert: certificate};
 /**
